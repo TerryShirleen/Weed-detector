@@ -1,0 +1,127 @@
+body {
+    background-color: #f8f9fc;
+  }
+
+  
+  .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-body {
+    padding: 2rem;
+  }
+
+  .text-gray-900 {
+    color: #1a1a1a;
+  }
+
+  .btn-primary {
+    background-color: #4e73df;
+    color: #ffffff;
+    border-radius: 5px;
+  }
+
+  .btn-primary:hover {
+    background-color: #375dc2;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d3e2;
+    border-radius: 5px;
+    background-color: #ffffff;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .form-group input:focus {
+    border-color: #4e73df;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  }
+
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .form-group small {
+    color: #858796;
+  }
+
+  .form-group .btn-primary {
+    width: 100%;
+  }
+
+  .text-center {
+    margin-top: 10px;
+  }
+
+  .text-center a {
+    color: #4e73df;
+  }
+
+  .text-center a:hover {
+    text-decoration: underline;
+  }
+
+
+  .custom-file {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+
+  .custom-file-input {
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    margin: 0;
+    opacity: 0;
+  }
+
+  .custom-file-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    height: calc(1.5em + .75rem);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+  }
+
+  .custom-file-input:focus~.custom-file-label {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+  }
+
+  .custom-file-input:lang(en)~.custom-file-label::after {
+    content: "Choose file";
+  }
+
+  .custom-file-input~.custom-file-label[data-browse]::after {
+    content: attr(data-browse);
+  }
+
+  .custom-file-input:disabled~.custom-file-label,
+  .custom-file-input[readonly]~.custom-file-label {
+    background-color: #e9ecef;
+  }
+
+  .custom-file-input:lang(en)~.custom-file-label::after {
+    content: "Choose Image";
+  }

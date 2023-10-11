@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Verified Users:</h5>
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">All Verified Users</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTableF" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Full Names</th>
+                                        <th>Email</th>
+                                        <th>Gender</th>
+                                        <th>Location</th>
+                                        <th>Date Created</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        {% for user in verified_users %}
+                                            <tr>
+                                                <td><a href="{% url 'user_detail' user.user.id %}">{{user.user.username}}<span style="color:green"></span></a></td>
+                                                <td>{{ user.user.first_name }} {{ user.user.last_name }} </td>
+                                                <td>{{user.user.email}}</td>
+                                                <td>{{user.sex.name}}</td>
+                                                <td>{{user.location.name}}</td>
+                                                <td>{{user.date_created}}</td>
+
+                                            </tr>
+                                        {% endfor %}
+                                </tbody>
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Full Names</th>
+                                        <th>Email</th>
+                                        <th>Gender</th>
+                                        <th>Location</th>
+                                        <th>Date Created</th>
+
+
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

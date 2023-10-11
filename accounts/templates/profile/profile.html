@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{%load static %}
+{% block content %}
+<div class="container" style="margin-top:5%;">
+    <div class="row">
+        <div class="card col-md-12 mt-3">
+            <div class="card shadow  col-md-2">
+             {% if profile_detail.profile_picture %}
+                <img class="rounded-circle account-img" src="{{profile_detail.profile_picture.cdn_url}}">
+             {%else%}
+             <img src="{% static 'vendor/avatar.jpg'%}" alt="avatar" class="img-thumbnail rounded-circle prof">
+             {%endif%}
+            </div>
+            <div class="card-header bg-gradient-light">
+                <h3 class="account-heading"><span class="mr-1 text-secondary username">
+                        <strong> Settings</strong> </span>
+                    <a class="mt-3" data-toggle="modal" data-target="#ModalCenter"><i class="fa fa-cog mt-3"
+                            id="cog"></i></a>
+                </h3>
+            </div>
+            <div class="card-body card col-md-12 mt-9" >
+                <p class="text-left">Email: {{user.email }} </p>
+                <p class="text-left">Full names: <strong> {%if user.first_name%}{{user.first_name|title}} {{user.last_name|title}}{%else%} No names provided {%endif%} </trong></p>
+                <p class="text-left">Username: <strong>{{user.username}} </trong></p>
+                <p class="text-left">Gender: <strong>{{user.profile.sex.name}} </trong></p>
+                <p class="text-left">Location: <strong>{{user.profile.location}} </trong></p>
+                <p class="text-left">Bio: <strong>{{user.profile.bio}} </trong></p>
+                <p class="text-left">Date of Birth: <strong>{%if user.profile.date_of_birth%}{{user.profile.date_of_birth}}{%else%} No Date Provided {%endif%}</trong></p>
+            </div>
+        </div>
+ <div class="col-md-12"></div>
+    </div>
+    <div class="modal fade bd-example-modal-sm" id="ModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <a class="D-block mx-auto" href="">
+                        <div> Change Password</div>
+                    </a>
+                     <hr>
+                    <a class="D-block mx-auto" href="{% url 'edit_profile' user.username%}">
+                      <div>Edit Profile</div>
+                    </a>
+                    <hr>
+                    <a class="D-block mx-auto" href="{% url 'logout' %}">
+                        <div> Log Out</div>
+                    </a>
+                    <hr>
+                    <a class="D-block mx-auto" href="" data-dismiss="modal">
+                        <div>Close</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

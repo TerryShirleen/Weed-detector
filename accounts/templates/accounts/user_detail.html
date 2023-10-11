@@ -1,0 +1,48 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md">
+        <div class="card shadow m-md-2">
+            <div class="card-header bg-gradient-light">
+                <h5>Viewing :<span style="color:blue"> {{ users.username}} </span></h5>
+            </div>
+            <div class="card-body">
+                <div class="float-left">
+                    <p>Full Name: <span style="color:blue"> {{ users.first_name}} {{users.last_name}}</span> </p>
+                    <hr>
+
+                    <p>Profile Status: <span style="color:blue"> {{profile.status.name}}</span> </p>
+                    <hr>
+                </div>
+                 <br>
+                <div class="float-right">
+                     <a class="btn btn-info  btn-sm btn-block"
+                        href="{% url 'user_approve' id=users.id%}">Approve User</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="card shadow m-md-2">
+            <div class="card-header bg-gradient-light">
+                <h5>Other Information</h5>
+            </div>
+            <div class="card-body">
+                <p>Email: <span style="color:blue">{{users.email}} </span></p>
+                <p>Sex: <span style="color:blue">{{profile.sex.name}} </span></p>
+
+                <p>Location: <span style="color:blue">{{profile.location}} </span></p>
+
+                <p>Date of Birth: <span style="color:blue">{{profile.date_of_birth}} </span></p>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<br>
+
+
+</div>
+{% endblock %}

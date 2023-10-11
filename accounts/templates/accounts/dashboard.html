@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% include 'accounts/status.html' %}
+     {%if request.user.is_superuser%}
+
+     
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Users:</h5>
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Pending Verification</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Full Names</th>
+                                        <th>Email</th>
+                                        <th>Date Created</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if users %}
+                                        {% for user in users %}
+                                            <tr>
+                                                <td> View : <a href="{% url 'user_detail' user.id %}">  {{user.username}}</a></td>
+                                                <td>{{user.first_name}} {{user.last_name}}</td>
+                                                <td>{{user.email}}</td>
+                                                <td>{{user.date_joined}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endif%}
+
+    {%endblock%}

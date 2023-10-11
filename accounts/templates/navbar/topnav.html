@@ -1,0 +1,77 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-dark topbar mb-4 static-top shadow">
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+    <!--Logo-->
+    <a href="{% url 'index' %}">
+    </a>
+    <ul class="navbar-nav ml-auto">
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </li>
+        {% if user.is_authenticated%}
+          <!--user.gateway_profile.-->
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {%if request.user.is_superuser%}
+                <span class="mr-2 d-none d-lg-inline text-gray-900 small"> Hello <span style="color: brown;">{{ request.user}}</span> , Logged in as <span style="color: brown;">SUPERUSER</span></span>
+                {%else%}
+                <span class="mr-2 d-none d-lg-inline text-gray-900 small"><span class="mr-2 d-none d-lg-inline text-gray-900 small"> Hello  <span style="color: brown;">{{ request.user}}</span> , Logged in as <span style="color: brown;">Customer</span></span>
+                {%endif%}
+
+                {%if user.profile.profile_picture.cdn_url%}
+                <img class="rounded-circle account-img" src="{{user.profile.profile_picture.cdn_url}}" alt="" height="65px" style="margin: 10px;">
+                {%else%}
+                <img src="{% static 'vendor/avatar.png'%}" alt="avatar" class="img-thumbnail rounded-circle prof" alt="" height="17px" style="margin: 2px;">
+                {%endif%} 
+             
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="{% url 'profile' user.username %}">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    SignOut
+                </a>
+            </div>
+        </li>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-door-open"></i>
+            </span>
+            <span style="color:green" class="text">Login / Register</span>
+        </a>
+        {% endif %}
+    </ul>
+</nav>
