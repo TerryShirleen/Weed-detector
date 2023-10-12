@@ -30,8 +30,8 @@ ALLOWED_HOSTS = []
 
 # email configurations
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER ='shadrackanayo@gmail.com'
-EMAIL_HOST_PASSWORD = 'isdhtpytluwecclj'
+EMAIL_HOST_USER ='murugishirleen2@gmail.com'
+EMAIL_HOST_PASSWORD = 'xgka ilkx tlse akym'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -52,11 +52,11 @@ INSTALLED_APPS = [
     # from here newly added or installed applications
     'bootstrap4',
 
-    # newly installed
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
+    # # # newly installed
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
     'corsheaders',
 
     'django_otp',
@@ -64,7 +64,9 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',
     # 'allauth_otp',
     # 'allauth_2fa',
+
     'crispy_forms',
+
     'django_rest_passwordreset',
     'django_forms_bootstrap',
 ]
@@ -113,11 +115,9 @@ WSGI_APPLICATION = 'weed_detector.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'weed_db',
-        'USER': 'shadrack',
-    'PASSWORD':'1234',
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': BASE_DIR /'db.sqlite3',                      # Or path to database file if using sqlite3.
+                             # Set to empty string for default. Not used with sqlite3.
     }
 }
 

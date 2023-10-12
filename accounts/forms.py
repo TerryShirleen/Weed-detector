@@ -20,8 +20,7 @@ class RegisterForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user','is_approved','status','otp_device']
-
+        exclude = ['is_approved','status','otp_device']
 
 class OTPVerificationForm(forms.Form):
     otp = forms.CharField(label='Enter OTP', max_length=6, required=True)
