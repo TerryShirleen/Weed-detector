@@ -11,7 +11,12 @@ from django.contrib import messages
 from django.core.mail import EmailMessage
 from django_otp.plugins.otp_totp.models import TOTPDevice
 import random, time
-
+from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import ImageUploadForm
+from .ml_model import load_pickled_model, make_prediction
+from PIL import Image
+import numpy as np
 
 
 
@@ -318,17 +323,34 @@ def logoutUser(request):
     messages.success(request, 'You have logged out. Thank you for using our services.')
     return redirect('index')
 
-# function to render the upload form
-
 def upload_image(request):
-    if request.method =="POST":
+    print('upload image started')
+    if request.method == "POST":
         form = ImageUploadForm(request.POST)
         if form.is_valid():
-            pass
+            image_instance = form.save(commit=False)
+            print('upload image test1')
+            # Load the pickled model
+            model = load_pickled_model()
 
+            # Open and preprocess the image
+            input_image = Image.open(image_instance.image.path)
+            input_image = input_image.resize((244, 244))
+            input_data = np.array(input_image) / 255.0
+
+            # Make predictions
+            predictions = make_prediction(model, np.expand_dims(input_data, 0))
+
+            # Update the prediction field in the model
+            image_instance.prediction = predictions
+            image_instance.save()
+
+            return render(request, 'accounts/upload_image.html', {'form': form, 'predictions': predictions})
         else:
             messages.error(request, 'Invalid form submission.')
     else:
         form = ImageUploadForm()
 
     return render(request, 'accounts/upload_image.html', {'form': form})
+
+
